@@ -1,0 +1,191 @@
+@import "variables", "mixins", "fonts", "reset";
+
+
+// button
+// card style
+// list style
+
+
+// layout
+.wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#header {
+    background-color: $white;
+    width: 100%;
+    height: 64px;
+}
+
+#main {
+    min-height: calc(100vh - $hdH - $ftH);
+    flex-grow: 1;
+}
+
+#footer {
+    height: 70px;
+}
+
+.slide1 {
+    width: 100%;
+    height: 100%;
+}
+  swiper-slide {
+    height: 300px;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+// header
+.inner {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+#header {
+    .inner {
+        // @include flexSpaceBetween;
+        @include flex(
+            $justify:space-between,
+            $align:center);
+    }
+
+    .col-right {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+
+    .util {
+        ul {
+            display: flex;
+            flex-direction: row;
+        }
+        .link-g {
+            display: block;
+            height: $hdH;
+            line-height: $hdH;
+            padding: 0 10px;
+            &::before {
+                font-family: "Font Awesome 6 Free";
+                font-weight: 900;
+            }
+        }
+        .link-lang {
+            &::before{
+                content: '\f0ac';
+            }
+        }
+        .link-search{
+            &::before{
+                content: '\f002';
+            }
+        }
+        .link-my{
+            &::before{
+                content: '\f007';
+            }
+        }
+    }
+}
+#logo {
+    position: relative;
+    z-index: 1100;
+}
+.gnb-wrap {
+    .inp-burger {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border: 0;
+        opacity: 0;
+        visibility: hidden;
+        &:checked{
+            // input이 체크 O design
+            & + .label-burger {
+                .bar {
+                    &:nth-child(2) {
+                        display: none;
+                    }
+                    &:nth-child(1) {
+                        transform: translateY(4px) rotate(45deg);
+                    }
+                    &:nth-child(3) {
+                        transform: translateY(-4px) rotate(-45deg);
+                    }
+                }
+                // #gnb 보이게
+                & ~ #gnb {
+                    display: flex;
+                    left: 0;
+                }
+            }
+            // +는 형제 선택자(바로 뒤에 있는 요소만)
+        }
+    }
+    // input 체크 X design
+    .label-burger{
+        position: relative;
+        z-index: 1100;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        .bar {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background-color: $black;
+            border-radius: 2px;
+            transition: all 1s;
+        }
+    }
+    
+}
+
+#gnb {
+    display: flex;
+    justify-content: center;
+    
+    padding: 100px 0;
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    background-color: $white;
+    z-index: 1000;
+
+    transition: all 2s;
+}
+
+@media only screen and (min-width: 1280px) {
+    .inner{
+        padding: 0;
+    }
+}
+
+
+
+@import "main","sub1";
+// main, sub는 우선순위를 높이기 위해 아래로 내림.
