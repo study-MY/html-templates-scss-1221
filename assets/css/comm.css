@@ -285,8 +285,15 @@ legend {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  max-width: 420px;
+  margin: 0 auto;
 }
 
+@media screen and (min-width: 1280px) {
+  .wrap {
+    max-width: none;
+  }
+}
 #header {
   background-color: #fff;
   width: 100%;
